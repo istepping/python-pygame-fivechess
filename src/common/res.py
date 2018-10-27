@@ -1,0 +1,6 @@
+base_res_url = "../../res/"
+background_image_filename = base_res_url + "base/background.jpg"
+chessboard_image_filename = base_res_url + "base/chessboard.jpg"
+black_chess_image_filename = base_res_url + "base/black_chess.png"
+white_chess_image_filename = base_res_url + "base/white_chess.png"
+success_image_filename=base_res_url+"/icon/success_image.png"
