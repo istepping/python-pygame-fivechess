@@ -7,10 +7,10 @@ CHESS_BOARD = [[0 for i in range(BOARD_WIDTH)] for i in range(BOARD_HEIGHT)]  # 
 SCORE1 = 10000000  # 连五
 SCORE2 = 100000  # 活四
 SCORE3 = 50000  # 活三,半活四
-SCORE4 = 100  # 活二,半活三
+SCORE4 = 1000  # 活二,半活三
 SCORE5 = 10  # 活一，半活二
 
-SEARCH_DEEP = 4
+SEARCH_DEEP = 2
 WHITE_MAP = []  # 记录白棋路径
 BLACK_MAP = []  # 记录黑棋路径
 

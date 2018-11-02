@@ -97,9 +97,9 @@ def pre_deep(chessboard):
         for j in range(BOARD_HEIGHT):
             if chessboard[i][j] == NONE_CHESS:
                 num += 1
-    if num < 10:
+    if num < 5:
         SEARCH_DEEP = 8
-    elif num < 20:
+    elif num < 10:
         SEARCH_DEEP = 6
     elif num < 30:
         SEARCH_DEEP = 4
