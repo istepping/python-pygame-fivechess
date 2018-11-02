@@ -249,30 +249,57 @@ def f_four_num(chess):
     return num
 
 
-# 深层预处理棋盘
+# 深层预处理棋盘 OK
 def pre_chessboard2(chessboard):
     if len(WHITE_MAP) + len(BLACK_MAP) <= 4:
         return chessboard
+    print("棋盘")
+    print_board(chessboard)
     top = (7, 0)
+    get_top = False
     bottom = (7, 14)
+    get_bottom = False
     left = (0, 7)
+    get_left = False
     right = (14, 7)
+    get_right = False
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if chessboard[i][j] == WHITE_CHESS or chessboard[i][j] == BLACK_CHESS:
                 left = i, j
+                get_left = True
+                break
+        if get_left:
+            break
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if chessboard[j][i] == WHITE_CHESS or chessboard[j][i] == BLACK_CHESS:
-                top = i, j
+                top = j, i
+                get_top = True
+                break
+        if get_top:
+            break
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if chessboard[BOARD_WIDTH - 1 - i][j] == WHITE_CHESS or chessboard[BOARD_WIDTH - 1 - i][j] == BLACK_CHESS:
-                right = i, j
+                right = BOARD_WIDTH - 1 - i, j
+                print("right",right)
+                get_right = True
+                break
+        if get_right:
+            break
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if chessboard[j][BOARD_HEIGHT - 1 - i] == WHITE_CHESS or chessboard[j][BOARD_HEIGHT - 1 - i] == BLACK_CHESS:
-                bottom = i, j
+                bottom = j, BOARD_HEIGHT - 1 - i
+                get_bottom = True
+                break
+        if get_bottom:
+            break
+    print("left", left)
+    print("right", right)
+    print("top", top)
+    print("bottom", bottom)
     L = [left[0], top[1]]
     R = [right[0], bottom[1]]
     if L[0] - 1 >= 0:
@@ -280,9 +307,9 @@ def pre_chessboard2(chessboard):
         L[1] -= 1
     if R[0] + 1 < BOARD_WIDTH:
         R[0] += 1
-        R[0] += 1
-    print("L=",L,end=',')
-    print("R=",R)
+        R[1] += 1
+    print("L=", L, end=',')
+    print("R=", R)
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if (not (i >= L[0] and i <= R[0] and j >= L[1] and j <= R[1])) and chessboard[i][j] == NONE_CHESS:

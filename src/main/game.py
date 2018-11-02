@@ -42,7 +42,7 @@ def robot_and_robot():
         if turn == WHITE_CHESS and game_over!=True:
             location = algorithm.robot.chess2(WHITE_CHESS)
         if turn == BLACK_CHESS and game_over!=True:
-            location = algorithm.robot.chess1(BLACK_CHESS)
+            location = algorithm.robot.chess2(BLACK_CHESS)
         if location[0] != -1 and game_over != True:
             result = utils.opUtil.chess(location, screen, turn_image, turn)
             # 换令牌
@@ -143,4 +143,4 @@ def start_game():
         # 刷新画面
         pygame.display.update()
 
-robot_and_robot()
+start_game_robot()
