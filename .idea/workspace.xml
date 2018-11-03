@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="70d0bd4b-1328-4e0e-88c7-48494bbdc159" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/max_min.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/max_min.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/robot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/opUtil.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/opUtil.py" afterDir="false" />
-    </list>
+    <list default="true" id="70d0bd4b-1328-4e0e-88c7-48494bbdc159" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +62,7 @@
     <session id="-1516253755">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.27" value="1" />
@@ -310,7 +301,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="326" />
     <option name="y" value="113" />
     <option name="width" value="887" />
@@ -551,7 +542,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14712153" />
