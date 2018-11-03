@@ -11,6 +11,7 @@ SCORE4 = 1000  # 活二,半活三
 SCORE5 = 10  # 活一，半活二
 
 SEARCH_DEEP = 2
+SEARCH_DEEP2= 4
 WHITE_MAP = []  # 记录白棋路径
 BLACK_MAP = []  # 记录黑棋路径
 
