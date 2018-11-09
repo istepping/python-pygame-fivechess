@@ -7,9 +7,6 @@ from common.manager import *
 def chess2(chess):
     pos = pre_chess2(chess)
     pre_board = pre_chessboard2(pre_chessboard())
-    algorithm.max_min.pre_deep(pre_board)
-    # print("预处理棋盘")
-    # print_board(pre_board)
     if pos[0] < 0:
         node = algorithm.max_min.max_min2(chess, MIN, MAX, 0, 0, pre_board, 0)
         pos = node["i"], node["j"]
@@ -17,7 +14,8 @@ def chess2(chess):
 
 
 def chess1(chess):
-    pos = pre_chess(chess)
+    # pos = pre_chess(chess)
+    pos = -1, -1
     # print("预处理:",pos)
     pre_board = pre_chessboard()
     # algorithm.max_min.pre_deep(pre_board)
@@ -29,27 +27,36 @@ def chess1(chess):
 
 
 def pre_chess2(chess):
-    first_chess = chess_first(chess)
+    first_chess = chess_first2(chess)
     if first_chess[0] >= 0:
         return first_chess
+    # 活四,活四
     first_white = is_first(chess)
     if first_white[0] >= 0:
         return first_white
     first_black = is_first(other_chess(chess))
     if first_black[0] >= 0:
         return first_black
+    # 有活三
     second_white = is_second(chess)
     if second_white[0] >= 0:
         return second_white
     second_black = is_second(other_chess(chess))
     if second_black[0] >= 0:
         return second_black
+    # 能成活三
     third_chess = is_third(chess)
     if third_chess[0] >= 0:
         return third_chess
     third_other_chess = is_third(other_chess(chess))
     if third_other_chess[0] >= 0:
         return third_other_chess
+    forth_chess = is_forth(chess)
+    if forth_chess[0] >= 0:
+        return forth_chess
+    forth_other_chess = is_forth(other_chess(chess))
+    if forth_other_chess[0] >= 0:
+        return forth_other_chess
     return -1, -1
 
 
@@ -73,7 +80,35 @@ def pre_chess(chess):
     return -1, -1
 
 
+def chess_first2(chess):
+    if len(WHITE_MAP) == 0:
+        return 7, 7
+    if len(WHITE_MAP) == 1:
+        if CHESS_BOARD[7][5] == NONE_CHESS:
+            return 7, 5
+        if CHESS_BOARD[9][7] == NONE_CHESS:
+            return 9, 7
+    if len(WHITE_MAP) == 2:
+        if WHITE_MAP[1] == (7, 5):
+            if CHESS_BOARD[6][6] == NONE_CHESS:
+                return 6, 6
+            if CHESS_BOARD[8][6] == NONE_CHESS:
+                return 8, 6
+            if CHESS_BOARD[7][6] == NONE_CHESS:
+                return 7, 6
+        if WHITE_MAP[1] == (9, 7):
+            if CHESS_BOARD[8][6] == NONE_CHESS:
+                return 8, 6
+            if CHESS_BOARD[8][7] == NONE_CHESS:
+                return 8, 7
+            if CHESS_BOARD[8][8] == NONE_CHESS:
+                return 8, 8
+    return -1, -1
+
+
 def chess_first(chess):
+    if len(WHITE_MAP) + len(BLACK_MAP) == 0:
+        return 7, 7
     if len(WHITE_MAP) + len(BLACK_MAP) <= 4:
         choice_point = [(6, 6), (8, 6), (7, 7), (6, 8), (8, 8)]
         choice = random.randint(0, 4)
@@ -132,6 +167,10 @@ def is_second(chess):
                 if i + 3 < BOARD_WIDTH and i - 1 >= 0 and CHESS_BOARD[i + 1][j] == chess and CHESS_BOARD[i + 2][
                     j] == chess and \
                         CHESS_BOARD[i - 1][j] == NONE_CHESS and CHESS_BOARD[i + 3][j] == NONE_CHESS:
+                    if i - 2 >= 0 and CHESS_BOARD[i - 2][j] == chess:
+                        return i - 1, j
+                    if i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j] == chess:
+                        return i + 3, j
                     if i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j] == NONE_CHESS:
                         return i + 3, j
                     if i - 2 >= 0 and CHESS_BOARD[i - 2][j] == NONE_CHESS:
@@ -140,6 +179,10 @@ def is_second(chess):
                 if j + 3 < BOARD_HEIGHT and j - 1 >= 0 and CHESS_BOARD[i][j + 1] == chess and CHESS_BOARD[i][
                     j + 2] == chess and \
                         CHESS_BOARD[i][j - 1] == NONE_CHESS and CHESS_BOARD[i][j + 3] == NONE_CHESS:
+                    if j + 4 < BOARD_WIDTH and CHESS_BOARD[i][j + 4] == chess:
+                        return i, j + 3
+                    if j - 2 >= 0 and CHESS_BOARD[i][j - 2] == chess:
+                        return i, j - 1
                     if j + 4 < BOARD_WIDTH and CHESS_BOARD[i][j + 4] == NONE_CHESS:
                         return i, j + 3
                     if j - 2 >= 0 and CHESS_BOARD[i][j - 2] == NONE_CHESS:
@@ -149,6 +192,10 @@ def is_second(chess):
                     j + 1] == chess and \
                         CHESS_BOARD[i + 2][j + 2] == chess and CHESS_BOARD[i - 1][j - 1] == NONE_CHESS and \
                         CHESS_BOARD[i + 3][j + 3] == NONE_CHESS:
+                    if j + 4 < BOARD_HEIGHT and i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j + 4] == chess:
+                        return i + 3, j + 3
+                    if j - 2 >= 0 and i - 2 >= 0 and CHESS_BOARD[i - 2][j - 2] == chess:
+                        return i - 1, j - 1
                     if j + 4 < BOARD_HEIGHT and i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j + 4] == NONE_CHESS:
                         return i + 3, j + 3
                     if j - 2 >= 0 and i - 2 >= 0 and CHESS_BOARD[i - 2][j - 2] == NONE_CHESS:
@@ -158,6 +205,10 @@ def is_second(chess):
                     j + 1] == chess and i + 1 < BOARD_WIDTH and j - 1 >= 0 and CHESS_BOARD[i - 2][
                     j + 2] == chess and CHESS_BOARD[i + 1][j - 1] == NONE_CHESS and CHESS_BOARD[i - 3][
                     j + 3] == NONE_CHESS:
+                    if j + 4 < BOARD_HEIGHT and i - 4 >= 0 and CHESS_BOARD[i - 4][j + 4] == chess:
+                        return i - 3, j + 3
+                    if j - 2 >= 0 and i + 2 < BOARD_WIDTH and CHESS_BOARD[i + 2][j - 2] == chess:
+                        return i + 1, j - 1
                     if j + 4 < BOARD_HEIGHT and i - 4 >= 0 and CHESS_BOARD[i - 4][j + 4] == NONE_CHESS:
                         return i - 3, j + 3
                     if j - 2 >= 0 and i + 2 < BOARD_WIDTH and CHESS_BOARD[i + 2][j - 2] == NONE_CHESS:
@@ -172,6 +223,18 @@ def is_third(chess):
             if CHESS_BOARD[i][j] == NONE_CHESS:
                 CHESS_BOARD[i][j] = chess  # 预落子
                 if three_num(chess) + f_four_num(chess) > 1:
+                    CHESS_BOARD[i][j] = NONE_CHESS
+                    return i, j
+                CHESS_BOARD[i][j] = NONE_CHESS
+    return -1, -1
+
+
+def is_forth(chess):
+    for i in range(BOARD_WIDTH):
+        for j in range(BOARD_HEIGHT):
+            if CHESS_BOARD[i][j] == NONE_CHESS:
+                CHESS_BOARD[i][j] = chess  # 预落子
+                if f_four_num(chess) > 0:
                     CHESS_BOARD[i][j] = NONE_CHESS
                     return i, j
                 CHESS_BOARD[i][j] = NONE_CHESS
@@ -252,7 +315,6 @@ def f_four_num(chess):
 def pre_chessboard2(chessboard):
     if len(WHITE_MAP) + len(BLACK_MAP) <= 4:
         return chessboard
-    # print("棋盘")
     # print_board(chessboard)
     top = (7, 0)
     get_top = False
@@ -331,6 +393,7 @@ def pre_chessboard():
             num += 1
         width -= 2
     width = BOARD_WIDTH
+    num -= 1  # 调参
     while num > 1:
         m = (BOARD_WIDTH - width) // 2
         n = (BOARD_WIDTH - width) // 2

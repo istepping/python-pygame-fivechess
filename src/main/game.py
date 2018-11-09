@@ -68,8 +68,8 @@ def robot_and_robot():
 
 def start_game_robot():
     # 定义落子顺序
-    turn_image = black_chess_image
-    turn = BLACK_CHESS
+    turn_image = white_chess_image
+    turn = WHITE_CHESS
     robot_chess = WHITE_CHESS
     human_chess = BLACK_CHESS
     game_over = False
@@ -81,7 +81,7 @@ def start_game_robot():
             if event.type == MOUSEBUTTONDOWN and game_over != True:
                 if turn == human_chess:
                     location = event.pos
-        if turn == robot_chess:
+        if turn == robot_chess and game_over!=True:
             location = algorithm.robot.chess2(robot_chess)
         if location[0] != -1 and game_over != True:
             if turn == robot_chess:
@@ -123,7 +123,6 @@ def start_game():
                 # 换令牌
                 if result:
                     # 测试
-                    # main.game_test.test1()
                     if turn_image == white_chess_image:
                         # 算杀
                         success = utils.opUtil.is_success(WHITE_CHESS,screen)
@@ -143,4 +142,4 @@ def start_game():
         # 刷新画面
         pygame.display.update()
 
-robot_and_robot()
+start_game_robot()

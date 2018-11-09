@@ -18,6 +18,14 @@ def get_score2(m, n, chessboard):
     return white_score - black_score
 
 
+def white_score(m, n, chessboard):
+    print("行:", get_score_row(m, n, WHITE_CHESS, chessboard),end=",")
+    print("列:", get_score_portrait(m, n, WHITE_CHESS, chessboard),end=",")
+    print("右斜:", get_score_rightdown(m, n, WHITE_CHESS, chessboard),end=",")
+    print("左斜:", get_score_leftdown(m, n, WHITE_CHESS, chessboard),end=",")
+    print(" ")
+
+
 def get_score_portrait(m, n, chess, chessboard):
     new_chessboard = conver_ij(chessboard)
     return get_score_row(n, m, chess, new_chessboard)
@@ -310,3 +318,41 @@ def get_score(chess, chessboard):
                     score += SCORE1
 
     return score
+
+
+def three_num(chess):
+    num = 0
+    for i in range(BOARD_WIDTH):
+        for j in range(BOARD_HEIGHT):
+            if CHESS_BOARD[i][j] == chess:
+                # 横向
+                if i + 3 < BOARD_WIDTH and i - 1 >= 0 and CHESS_BOARD[i + 1][j] == chess and CHESS_BOARD[i + 2][
+                    j] == chess and \
+                        CHESS_BOARD[i - 1][j] == NONE_CHESS and CHESS_BOARD[i + 3][j] == NONE_CHESS:
+                    if (i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j] == NONE_CHESS) or (
+                            i - 2 >= 0 and CHESS_BOARD[i - 2][j] == NONE_CHESS):
+                        num += 1
+                # 纵向
+                if j + 3 < BOARD_HEIGHT and j - 1 >= 0 and CHESS_BOARD[i][j + 1] == chess and CHESS_BOARD[i][
+                    j + 2] == chess and \
+                        CHESS_BOARD[i][j - 1] == NONE_CHESS and CHESS_BOARD[i][j + 3] == NONE_CHESS:
+                    if (j + 4 < BOARD_WIDTH and CHESS_BOARD[i][j + 4] == NONE_CHESS) or (
+                            j - 2 >= 0 and CHESS_BOARD[i][j - 2] == NONE_CHESS):
+                        num += 1
+                # 右斜
+                if i + 3 < BOARD_WIDTH and j + 3 < BOARD_HEIGHT and i - 1 >= 0 and j - 1 >= 0 and CHESS_BOARD[i + 1][
+                    j + 1] == chess and \
+                        CHESS_BOARD[i + 2][j + 2] == chess and CHESS_BOARD[i - 1][j - 1] == NONE_CHESS and \
+                        CHESS_BOARD[i + 3][j + 3] == NONE_CHESS:
+                    if (j + 4 < BOARD_HEIGHT and i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 4][j + 4] == NONE_CHESS) or (
+                            j - 2 >= 0 and i - 2 >= 0 and CHESS_BOARD[i - 2][j - 2] == NONE_CHESS):
+                        num += 1
+                # 左斜
+                if i - 3 >= 0 and j + 3 < BOARD_HEIGHT and CHESS_BOARD[i - 1][
+                    j + 1] == chess and i + 1 < BOARD_WIDTH and j - 1 >= 0 and CHESS_BOARD[i - 2][
+                    j + 2] == chess and CHESS_BOARD[i + 1][j - 1] == NONE_CHESS and CHESS_BOARD[i - 3][
+                    j + 3] == NONE_CHESS:
+                    if (j + 4 < BOARD_HEIGHT and i - 4 >= 0 and CHESS_BOARD[i - 4][j + 4] == NONE_CHESS) or (
+                            j - 2 >= 0 and i + 2 < BOARD_WIDTH and CHESS_BOARD[i + 2][j - 2] == NONE_CHESS):
+                        num += 1
+    return num

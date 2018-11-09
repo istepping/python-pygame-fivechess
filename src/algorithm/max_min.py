@@ -4,20 +4,17 @@ import algorithm.utils
 
 
 def max_min2(chess, alpha, beta, i, j, chessboard, search_deep):
-    # print(SEARCH_DEEP2)
+    # algorithm.utils.print_board(chessboard)
     if is_chessboardFull(chessboard) or search_deep >= SEARCH_DEEP2:
         score = algorithm.get_score.get_score2(i, j, chessboard)
         # print("子节点评估", {"i": i, "j": j, "score": score})
         return {"i": i, "j": j, "score": score}
     if chess == WHITE_CHESS:
-        # 极大搜索
         # print("白棋")
-        score = MIN
         for k in range(BOARD_WIDTH):
             for r in range(BOARD_HEIGHT):
                 if chessboard[k][r] == NONE_CHESS:
-                    # 搜索
-                    # print("搜索",(k,r))
+                    # print("预落子:",(k,r))
                     chessboard[k][r] = chess  # 落子
                     search_deep += 1  # 搜索下一层
                     result = max_min2(algorithm.get_score.other_chess(chess), alpha, beta, k, r, chessboard,
@@ -31,16 +28,15 @@ def max_min2(chess, alpha, beta, i, j, chessboard, search_deep):
                         j = r
                     if alpha >= beta:
                         return result
+        # print(search_deep,"层返回:",{"i": i, "j": j, "score": alpha})
         return {"i": i, "j": j, "score": alpha}
     else:
         # 极小搜索
         # print("黑棋")
-        score = MAX
         for k in range(BOARD_WIDTH):
             for r in range(BOARD_HEIGHT):
                 if chessboard[k][r] == NONE_CHESS:
-                    # 搜索
-                    # print("搜索", (k, r))
+                    # print("预落子:", (k, r))
                     chessboard[k][r] = chess  # 落子
                     search_deep += 1  # 搜索下一层
                     result = max_min2(algorithm.get_score.other_chess(chess), alpha, beta, k, r, chessboard,
@@ -154,7 +150,7 @@ def pre_deep(chessboard):
                 num += 1
     if num < 10:
         SEARCH_DEEP2 = 6
-    elif num < 50:
+    elif num < 30:
         SEARCH_DEEP2 = 4
     else:
         SEARCH_DEEP2 = 2

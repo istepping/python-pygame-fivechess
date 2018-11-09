@@ -1,5 +1,5 @@
+from algorithm.get_score import *
 def print_board(chessboard):
-    for i in range(len(chessboard)):
-        for j in range(len(chessboard)):
-            print(chessboard[i][j],end=",")
-        print(" ")
+    result=conver_ij(chessboard)
+    for i in result:
+        print(i)

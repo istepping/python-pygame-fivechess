@@ -28,3 +28,4 @@ def is_empty():
     print(11, algorithm.robot.is_empty(11))
     print(9, algorithm.robot.is_empty(9))
     print(7, algorithm.robot.is_empty(7))
+
