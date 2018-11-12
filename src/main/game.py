@@ -29,8 +29,8 @@ screen.blit(chessboard_image, (200, 100))
 
 def robot_and_robot():
     # 定义落子顺序
-    turn = BLACK_CHESS
-    turn_image = black_chess_image
+    turn = WHITE_CHESS
+    turn_image = white_chess_image
     robot_chess = WHITE_CHESS
     human_chess = BLACK_CHESS
     game_over = False
@@ -142,4 +142,4 @@ def start_game():
         # 刷新画面
         pygame.display.update()
 
-start_game_robot()
+robot_and_robot()

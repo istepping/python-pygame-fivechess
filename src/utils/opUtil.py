@@ -16,7 +16,7 @@ current_chess = 0
 def game_over(screen, win_chess):
     pos = SCREEN_SIZE[0] / 2 - 3, 70
     if win_chess == WHITE_CHESS:
-        message = "电脑胜"
+        message = "白棋胜"
     elif win_chess == BLACK_CHESS:
         message = "黑棋胜"
     else:
@@ -27,8 +27,8 @@ def game_over(screen, win_chess):
     textRect.center=pos
     screen.blit(text, textRect)
     pygame.display.update()
-    print("白棋",WHITE_MAP)
-    print("黑棋",BLACK_MAP)
+    # print("白棋",WHITE_MAP)
+    # print("黑棋",BLACK_MAP)
 
 def draw_five(screen,list):
     for i in list:
