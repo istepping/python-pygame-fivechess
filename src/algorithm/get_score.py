@@ -36,7 +36,6 @@ def get_score_leftdown(m, n, chess, chessboard):
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             result[BOARD_WIDTH - 1 - i][j] = chessboard[i][j]
-    # print("特殊点:",(BOARD_WIDTH-1-m,n))
     return get_score_rightdown(BOARD_WIDTH - 1 - m, n, chess, result)
 
 
@@ -48,7 +47,7 @@ def conver_ij(chessboard):
     return result
 
 
-# 增量式评估算法-给定一位置返回影响的路径分值,m:横坐标，n:纵坐标:get_score2(1,2,white_chess,chessboard)-get_score2(1,2,black_chess,chessboard)
+# 增量式评估算法-给定一位置返回影响的路径分值,m:横坐标，n:纵坐标
 def get_score_row(m, n, chess, chessboard):
     score = 0
     # 横向

@@ -6,7 +6,7 @@ import algorithm.utils
 def max_min2(chess, alpha, beta, i, j, chessboard, search_deep):
     # algorithm.utils.print_board(chessboard)
     if is_chessboardFull(chessboard) or search_deep >= SEARCH_DEEP2:
-        score = algorithm.get_score.get_score2(i, j, chessboard)
+        score = algorithm.get_score.get_score2(i, j, chessboard)-SCORE_LIST[i][j] # 分值增量
         # print("子节点评估", {"i": i, "j": j, "score": score})
         return {"i": i, "j": j, "score": score}
     if chess == WHITE_CHESS:

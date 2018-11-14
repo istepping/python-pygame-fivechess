@@ -23,67 +23,69 @@ def game_over(screen, win_chess):
         message = "平局"
     font = pygame.font.SysFont("SimHei", 32)
     text = font.render(message, True, (255, 0, 0))
-    textRect=text.get_rect()
-    textRect.center=pos
+    textRect = text.get_rect()
+    textRect.center = pos
     screen.blit(text, textRect)
     pygame.display.update()
     # print("白棋",WHITE_MAP)
     # print("黑棋",BLACK_MAP)
 
-def draw_five(screen,list):
+
+def draw_five(screen, list):
     for i in list:
         board_x, board_y = BOARD_START_X + i[0] * SHIFT_X, BOARD_START_Y + i[1] * SHIFT_Y
         pygame.draw.circle(screen, (255, 0, 0), (int(board_x), int(board_y)), 4, 4)
 
+
 # chess_board棋盘,chess检测的棋子,返回True,False OK
-def is_success(chess,screen):
+def is_success(chess, screen):
     for i in range(BOARD_WIDTH):
         for j in range(BOARD_HEIGHT):
             if CHESS_BOARD[i][j] == chess:
                 # 横向
                 if i + 4 < BOARD_WIDTH and CHESS_BOARD[i + 1][j] == chess and CHESS_BOARD[i + 2][j] == chess and \
                         CHESS_BOARD[i + 3][j] == chess and CHESS_BOARD[i + 4][j] == chess:
-                    m_list=[]
-                    m_list.append((i,j))
-                    m_list.append((i+1, j))
-                    m_list.append((i+2, j))
-                    m_list.append((i+3, j))
-                    m_list.append((i+4, j))
-                    draw_five(screen,m_list)
+                    m_list = []
+                    m_list.append((i, j))
+                    m_list.append((i + 1, j))
+                    m_list.append((i + 2, j))
+                    m_list.append((i + 3, j))
+                    m_list.append((i + 4, j))
+                    draw_five(screen, m_list)
                     return chess
                 # 纵向
                 if j + 4 < BOARD_HEIGHT and CHESS_BOARD[i][j + 1] == chess and CHESS_BOARD[i][j + 2] == chess and \
                         CHESS_BOARD[i][j + 3] == chess and CHESS_BOARD[i][j + 4] == chess:
-                    m_list=[]
-                    m_list.append((i,j))
-                    m_list.append((i, j+1))
-                    m_list.append((i, j+2))
-                    m_list.append((i, j+3))
-                    m_list.append((i, j+4))
-                    draw_five(screen,m_list)
+                    m_list = []
+                    m_list.append((i, j))
+                    m_list.append((i, j + 1))
+                    m_list.append((i, j + 2))
+                    m_list.append((i, j + 3))
+                    m_list.append((i, j + 4))
+                    draw_five(screen, m_list)
                     return chess
                 # 右斜
                 if i + 4 < BOARD_WIDTH and j + 4 < BOARD_HEIGHT and CHESS_BOARD[i + 1][j + 1] == chess and \
                         CHESS_BOARD[i + 2][j + 2] == chess and CHESS_BOARD[i + 3][j + 3] == chess and \
                         CHESS_BOARD[i + 4][j + 4] == chess:
-                    m_list=[]
-                    m_list.append((i,j))
-                    m_list.append((i+1, j+1))
-                    m_list.append((i+2, j+2))
-                    m_list.append((i+3, j+3))
-                    m_list.append((i+4, j+4))
-                    draw_five(screen,m_list)
+                    m_list = []
+                    m_list.append((i, j))
+                    m_list.append((i + 1, j + 1))
+                    m_list.append((i + 2, j + 2))
+                    m_list.append((i + 3, j + 3))
+                    m_list.append((i + 4, j + 4))
+                    draw_five(screen, m_list)
                     return chess
                 # 左斜
                 if i - 4 >= 0 and j + 4 < BOARD_HEIGHT and CHESS_BOARD[i - 1][j + 1] == chess and CHESS_BOARD[i - 2][
                     j + 2] == chess and CHESS_BOARD[i - 3][j + 3] == chess and CHESS_BOARD[i - 4][j + 4] == chess:
-                    m_list=[]
-                    m_list.append((i,j))
-                    m_list.append((i-1, j+1))
-                    m_list.append((i-2, j+2))
-                    m_list.append((i-3, j+3))
-                    m_list.append((i-4, j+4))
-                    draw_five(screen,m_list)
+                    m_list = []
+                    m_list.append((i, j))
+                    m_list.append((i - 1, j + 1))
+                    m_list.append((i - 2, j + 2))
+                    m_list.append((i - 3, j + 3))
+                    m_list.append((i - 4, j + 4))
+                    draw_five(screen, m_list)
                     return chess
     if is_chessboardFull(CHESS_BOARD):
         return 3
@@ -134,6 +136,7 @@ def chess(pos, screen, turn_image, turn):
         # algorithm.get_score.white_score(board_i, board_j, CHESS_BOARD)
     else:
         BLACK_MAP.append((board_i, board_j))
+    update_score(board_i, board_j)
     return True
 
 

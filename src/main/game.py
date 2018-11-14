@@ -39,9 +39,9 @@ def robot_and_robot():
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
-        if turn == WHITE_CHESS and game_over!=True:
+        if turn == WHITE_CHESS and game_over != True:
             location = algorithm.robot.chess2(WHITE_CHESS)
-        if turn == BLACK_CHESS and game_over!=True:
+        if turn == BLACK_CHESS and game_over != True:
             location = algorithm.robot.chess1(BLACK_CHESS)
         if location[0] != -1 and game_over != True:
             result = utils.opUtil.chess(location, screen, turn_image, turn)
@@ -50,7 +50,7 @@ def robot_and_robot():
                 # 落子测试
                 # algorithm.test.is_empty()
                 # 算杀
-                success = utils.opUtil.is_success(turn,screen)
+                success = utils.opUtil.is_success(turn, screen)
                 if success:
                     game_over = True
                     utils.opUtil.game_over(screen, success)
@@ -81,7 +81,7 @@ def start_game_robot():
             if event.type == MOUSEBUTTONDOWN and game_over != True:
                 if turn == human_chess:
                     location = event.pos
-        if turn == robot_chess and game_over!=True:
+        if turn == robot_chess and game_over != True:
             location = algorithm.robot.chess2(robot_chess)
         if location[0] != -1 and game_over != True:
             if turn == robot_chess:
@@ -92,10 +92,10 @@ def start_game_robot():
             # 换令牌
             if result:
                 # 算杀
-                success = utils.opUtil.is_success(turn,screen)
+                success = utils.opUtil.is_success(turn, screen)
                 if success:
                     game_over = True
-                    utils.opUtil.game_over(screen,success)
+                    utils.opUtil.game_over(screen, success)
                 # 切换
                 elif turn == WHITE_CHESS:
                     turn_image = black_chess_image
@@ -125,7 +125,7 @@ def start_game():
                     # 测试
                     if turn_image == white_chess_image:
                         # 算杀
-                        success = utils.opUtil.is_success(WHITE_CHESS,screen)
+                        success = utils.opUtil.is_success(WHITE_CHESS, screen)
                         if success:
                             game_over = True
                             utils.opUtil.game_over(screen, success)
@@ -133,7 +133,7 @@ def start_game():
                         turn_image = black_chess_image
                         turn = BLACK_CHESS
                     else:
-                        success = utils.opUtil.is_success(BLACK_CHESS,screen)
+                        success = utils.opUtil.is_success(BLACK_CHESS, screen)
                         if success:
                             game_over = True
                             utils.opUtil.game_over(screen, turn)
@@ -141,5 +141,6 @@ def start_game():
                         turn = WHITE_CHESS
         # 刷新画面
         pygame.display.update()
+
 
 robot_and_robot()

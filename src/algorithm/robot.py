@@ -50,12 +50,12 @@ def pre_chess2(chess):
     third_other_chess = is_third(other_chess(chess))
     if third_other_chess[0] >= 0:
         return third_other_chess
-    forth_chess = is_forth(chess)
-    if forth_chess[0] >= 0:
-        return forth_chess
-    forth_other_chess = is_forth(other_chess(chess))
-    if forth_other_chess[0] >= 0:
-        return forth_other_chess
+    # forth_chess = is_forth(chess)
+    # if forth_chess[0] >= 0:
+    #     return forth_chess
+    # forth_other_chess = is_forth(other_chess(chess))
+    # if forth_other_chess[0] >= 0:
+    #     return forth_other_chess
     return -1, -1
 
 
